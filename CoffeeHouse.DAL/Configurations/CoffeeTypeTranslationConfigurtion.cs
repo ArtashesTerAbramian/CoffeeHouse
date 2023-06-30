@@ -4,18 +4,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CoffeeHouse.DAL.Configurations;
 
-public class CoffeeCategoryTranslationConfigurtion : BaseConfiguration<CoffeeCategoryTranslation>
+public class CoffeeTypeTranslationConfigurtion : BaseConfiguration<CoffeeTypeTranslation>
 {
-    public override void Configure(EntityTypeBuilder<CoffeeCategoryTranslation> builder)
+    public override void Configure(EntityTypeBuilder<CoffeeTypeTranslation> builder)
     {
         base.Configure(builder);
 
-        builder.ToTable("coffee_category_translation");
+        builder.ToTable("coffee_type_translation");
 
         builder.Property(x => x.Name)
             .HasMaxLength(256)
             .IsRequired();
 
-        builder.HasIndex(x => new { x.CoffeeCategoryId, x.LanguageId });
+        builder.HasIndex(x => new { x.CoffeeTypeId, x.LanguageId });
     }
 }

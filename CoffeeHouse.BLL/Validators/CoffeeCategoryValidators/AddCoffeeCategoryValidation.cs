@@ -1,5 +1,5 @@
 ﻿using CoffeeHouse.DAL.Models;
-using CoffeeHouse.DTO.CoffeeCategoryDtos;
+using CoffeeHouse.DTO.CoffeeTypeDtos;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeHouse.BLL.Validators.CoffeeCategoryValidators
 {
-    public class AddCoffeeCategoryValidation : AbstractValidator<AddCoffeeCategoryDto>
+    public class AddCoffeeCategoryValidation : AbstractValidator<AddCoffeeTypeDto>
     {
         public AddCoffeeCategoryValidation()
         {

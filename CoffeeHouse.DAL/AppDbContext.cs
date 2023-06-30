@@ -20,7 +20,7 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Error> Errors { get; set; }
-    public DbSet<CoffeeCategory> CoffeeCategories { get; set; }
+    public DbSet<CoffeeType> CoffeeTypes { get; set; }
 
     public override int SaveChanges()
     {

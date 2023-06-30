@@ -2,7 +2,7 @@
 using CoffeeHouse.BLL.Filters;
 using CoffeeHouse.BLL.Services.CoffeeCategoryService;
 using CoffeeHouse.Dto;
-using CoffeeHouse.DTO.CoffeeCategoryDtos;
+using CoffeeHouse.DTO.CoffeeTypeDtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeHouse.Api.Controllers
@@ -17,27 +17,27 @@ namespace CoffeeHouse.Api.Controllers
         }
 
         [HttpGet("get-all")]
-        public async Task<PagedResult<List<CoffeeCategoryDto>>> GetAll([FromQuery] CoffeeCategoryFilter filter)
+        public async Task<PagedResult<List<CoffeeTypeDto>>> GetAll([FromQuery] CoffeeCategoryFilter filter)
         {
             return await _coffeeCategoryService.GetAll(filter);
         }
 
         [HttpGet("get-by-id")]
-        public async Task<Result<CoffeeCategoryDto>> Get(long id)
+        public async Task<Result<CoffeeTypeDto>> Get(long id)
         {
             return await _coffeeCategoryService.GetById(id);
         }
 
         [HttpPost("add")]
         [DisableRequestSizeLimit]
-        public async Task<Result> Add(AddCoffeeCategoryDto dto)
+        public async Task<Result> Add(AddCoffeeTypeDto dto)
         {
             return await _coffeeCategoryService.Add(dto);
         }
 
         [HttpPost("update")]
         [DisableRequestSizeLimit]
-        public async Task<Result> Update(UpdateCoffeeCategoryDto dto)
+        public async Task<Result> Update(UpdateCoffeeTypeDto dto)
         {
             return await _coffeeCategoryService.Update(dto);
         }

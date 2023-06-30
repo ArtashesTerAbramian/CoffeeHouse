@@ -4,44 +4,43 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoffeeHouse.DAL.Seeders;
 
-public class CoffeeCategorySeeder
+public class CoffeeTypeSeeder
 {
     public static void SeedData(ModelBuilder modelBuilder)
     {
         #region Affogato
 
-        modelBuilder.Entity<CoffeeCategory>().HasData(new CoffeeCategory
+        modelBuilder.Entity<Models.CoffeeType>().HasData(new Models.CoffeeType
         {
-            Id = (int)CoffeeCategoryEnum.Affogato,
-            CoffeeCategoryEnum = CoffeeCategoryEnum.Affogato,
+            Id = 1,
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 1,
-            CoffeeCategoryId = 1,
+            CoffeeTypeId = 1,
             LanguageId = 1,
             Name = "Affogato",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 2,
-            CoffeeCategoryId = 1,
+            CoffeeTypeId = 1,
             LanguageId = 2,
             Name = "Аффогато",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 3,
-            CoffeeCategoryId = 1,
+            CoffeeTypeId = 1,
             LanguageId = 3,
             Name = "Աֆֆոքատո",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
@@ -53,38 +52,37 @@ public class CoffeeCategorySeeder
 
         #region Americano
 
-        modelBuilder.Entity<CoffeeCategory>().HasData(new CoffeeCategory
+        modelBuilder.Entity<Models.CoffeeType>().HasData(new Models.CoffeeType
         {
-            Id = (int)CoffeeCategoryEnum.Americano,
-            CoffeeCategoryEnum = CoffeeCategoryEnum.Americano,
+            Id = 2,
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 4,
-            CoffeeCategoryId = 2,
+            CoffeeTypeId = 2,
             LanguageId = 1,
             Name = "Americano",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 5,
-            CoffeeCategoryId = 2,
+            CoffeeTypeId = 2,
             LanguageId = 2,
             Name = "Американо",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 6,
-            CoffeeCategoryId = 2,
+            CoffeeTypeId = 2,
             LanguageId = 3,
             Name = "Ամերիկանո",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
@@ -96,38 +94,37 @@ public class CoffeeCategorySeeder
 
         #region Latte
 
-        modelBuilder.Entity<CoffeeCategory>().HasData(new CoffeeCategory
+        modelBuilder.Entity<Models.CoffeeType>().HasData(new Models.CoffeeType
         {
-            Id = (int)CoffeeCategoryEnum.Latte,
-            CoffeeCategoryEnum = CoffeeCategoryEnum.Latte,
+            Id = 3,
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 7,
-            CoffeeCategoryId = 3,
+            CoffeeTypeId = 3,
             LanguageId = 1,
             Name = "Latte",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 8,
-            CoffeeCategoryId = 3,
+            CoffeeTypeId = 3,
             LanguageId = 2,
             Name = "Латте",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 9,
-            CoffeeCategoryId = 3,
+            CoffeeTypeId = 3,
             LanguageId = 3,
             Name = "Լատե",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
@@ -139,38 +136,37 @@ public class CoffeeCategorySeeder
 
         #region Cappuccino
 
-        modelBuilder.Entity<CoffeeCategory>().HasData(new CoffeeCategory
+        modelBuilder.Entity<Models.CoffeeType>().HasData(new Models.CoffeeType
         {
-            Id = (int)CoffeeCategoryEnum.Cappuccino,
-            CoffeeCategoryEnum = CoffeeCategoryEnum.Cappuccino,
+            Id = 4,
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 10,
-            CoffeeCategoryId = 4,
+            CoffeeTypeId = 4,
             LanguageId = 1,
             Name = "Cappuccino",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 11,
-            CoffeeCategoryId = 4,
+            CoffeeTypeId = 4,
             LanguageId = 2,
             Name = "Капучино",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 12,
-            CoffeeCategoryId = 4,
+            CoffeeTypeId = 4,
             LanguageId = 3,
             Name = "Կապուչինո",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
@@ -182,38 +178,37 @@ public class CoffeeCategorySeeder
 
         #region Mocha
 
-        modelBuilder.Entity<CoffeeCategory>().HasData(new CoffeeCategory
+        modelBuilder.Entity<Models.CoffeeType>().HasData(new Models.CoffeeType
         {
-            Id = (int)CoffeeCategoryEnum.Mocha,
-            CoffeeCategoryEnum = CoffeeCategoryEnum.Mocha,
+            Id = 5,
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 13,
-            CoffeeCategoryId = 5,
+            CoffeeTypeId = 5,
             LanguageId = 1,
             Name = "Mocha",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 14,
-            CoffeeCategoryId = 5,
+            CoffeeTypeId = 5,
             LanguageId = 2,
             Name = "Моча",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 15,
-            CoffeeCategoryId = 5,
+            CoffeeTypeId = 5,
             LanguageId = 3,
             Name = "Մոչա",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
@@ -225,38 +220,37 @@ public class CoffeeCategorySeeder
 
         #region Macchiato
 
-        modelBuilder.Entity<CoffeeCategory>().HasData(new CoffeeCategory
+        modelBuilder.Entity<Models.CoffeeType>().HasData(new Models.CoffeeType
         {
-            Id = (int)CoffeeCategoryEnum.Macchiato,
-            CoffeeCategoryEnum = CoffeeCategoryEnum.Macchiato,
+            Id = 6,
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 16,
-            CoffeeCategoryId = 6,
+            CoffeeTypeId = 6,
             LanguageId = 1,
             Name = "Macchiato",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 17,
-            CoffeeCategoryId = 6,
+            CoffeeTypeId = 6,
             LanguageId = 2,
             Name = "Мачиато",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 18,
-            CoffeeCategoryId = 6,
+            CoffeeTypeId = 6,
             LanguageId = 3,
             Name = "Մաչիատո",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
@@ -268,38 +262,37 @@ public class CoffeeCategorySeeder
 
         #region Espresso
 
-        modelBuilder.Entity<CoffeeCategory>().HasData(new CoffeeCategory
+        modelBuilder.Entity<Models.CoffeeType>().HasData(new Models.CoffeeType
         {
-            Id = (int)CoffeeCategoryEnum.Espresso,
-            CoffeeCategoryEnum = CoffeeCategoryEnum.Espresso,
+            Id = 7,
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 19,
-            CoffeeCategoryId = 7,
+            CoffeeTypeId = 7,
             LanguageId = 1,
             Name = "Espresso",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 20,
-            CoffeeCategoryId = 7,
+            CoffeeTypeId = 7,
             LanguageId = 2,
             Name = "Еспресо",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 21,
-            CoffeeCategoryId = 7,
+            CoffeeTypeId = 7,
             LanguageId = 3,
             Name = "Եսպրեսօ",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
@@ -311,38 +304,37 @@ public class CoffeeCategorySeeder
 
         #region Decaf
 
-        modelBuilder.Entity<CoffeeCategory>().HasData(new CoffeeCategory
+        modelBuilder.Entity<Models.CoffeeType>().HasData(new Models.CoffeeType
         {
-            Id = (int)CoffeeCategoryEnum.Decaf,
-            CoffeeCategoryEnum = CoffeeCategoryEnum.Decaf,
+            Id = 8,
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 22,
-            CoffeeCategoryId = 8,
+            CoffeeTypeId = 8,
             LanguageId = 1,
             Name = "Decaf",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 23,
-            CoffeeCategoryId = 8,
+            CoffeeTypeId = 8,
             LanguageId = 2,
             Name = "Декаф",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 24,
-            CoffeeCategoryId = 8,
+            CoffeeTypeId = 8,
             LanguageId = 3,
             Name = "Դեկաֆ",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
@@ -354,38 +346,37 @@ public class CoffeeCategorySeeder
 
         #region Frappuccino
 
-        modelBuilder.Entity<CoffeeCategory>().HasData(new CoffeeCategory
+        modelBuilder.Entity<Models.CoffeeType>().HasData(new Models.CoffeeType
         {
-            Id = (int)CoffeeCategoryEnum.Frappuccino,
-            CoffeeCategoryEnum = CoffeeCategoryEnum.Frappuccino,
+            Id = 9,
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 25,
-            CoffeeCategoryId = 9,
+            CoffeeTypeId = 9,
             LanguageId = 1,
             Name = "Frappuccino",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 26,
-            CoffeeCategoryId = 9,
+            CoffeeTypeId = 9,
             LanguageId = 2,
             Name = "Фрапучино",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             ModifyDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
             IsDeleted = false,
         });
-        modelBuilder.Entity<CoffeeCategoryTranslation>().HasData(new CoffeeCategoryTranslation
+        modelBuilder.Entity<CoffeeTypeTranslation>().HasData(new CoffeeTypeTranslation
         {
             Id = 27,
-            CoffeeCategoryId = 9,
+            CoffeeTypeId = 9,
             LanguageId = 3,
             Name = "Ֆրապուփչինո",
             CreatedDate = new(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),

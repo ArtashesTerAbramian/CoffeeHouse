@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoffeeHouse.DTO.CoffeeCategoryDtos
+namespace CoffeeHouse.DTO.CoffeeTypeDtos
 {
-    public class CoffeeCategoryTranslationDto
+    public class CoffeeTypeTranslationDto
     {
         public int LanguageId { get; set; }
         public string Name { get; set; }

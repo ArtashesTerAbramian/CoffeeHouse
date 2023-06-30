@@ -1,5 +1,5 @@
 ﻿using CoffeeHouse.DAL.Models;
-using CoffeeHouse.DTO.CoffeeCategoryDtos;
+using CoffeeHouse.DTO.CoffeeTypeDtos;
 using Riok.Mapperly.Abstractions;
 
 namespace CoffeeHouse.BLL.Mappers;
@@ -7,15 +7,15 @@ namespace CoffeeHouse.BLL.Mappers;
 [Mapper]
 public static partial class CoffeeCategoryMapper
 {
-    public static CoffeeCategoryDto MapCoffeeCategoryDto(this CoffeeCategory category)
+    public static CoffeeTypeDto MapCoffeeTypeDto(this CoffeeType type)
     {
-        var dto = CoffeeCategoryToCoffeeCategoryDto(category);
+        var dto = CoffeeTypeToCoffeeTypeDto(type);
 
-        dto.Name = category.Translations.First().Name;
+        dto.Name = type.Translations.First().Name;
 
         return dto;
     }
 
-    private static partial CoffeeCategoryDto CoffeeCategoryToCoffeeCategoryDto(CoffeeCategory category);
-    public static partial List<CoffeeCategoryDto> MapToCoffeeCategoriesDtos(this List<CoffeeCategory> categories);
+    private static partial CoffeeTypeDto CoffeeTypeToCoffeeTypeDto(CoffeeType type);
+    public static partial List<CoffeeTypeDto> MapToCoffeeTypesDtos(this List<CoffeeType> types);
 }

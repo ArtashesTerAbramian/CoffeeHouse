@@ -3,7 +3,7 @@ using Ardalis.Result;
 using CoffeeHouse.BLL.Filters;
 using CoffeeHouse.BLL.Mappers;
 using CoffeeHouse.DAL;
-using CoffeeHouse.DTO.CoffeeCategoryDtos;
+using CoffeeHouse.DTO.CoffeeTypeDtos;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoffeeHouse.BLL.Services.CoffeeCategoryService;
@@ -16,7 +16,7 @@ public class CoffeeCategoryService : ICoffeeCategoryService
     {
         _db = db;
     }
-    public Task<Result> Add(AddCoffeeCategoryDto dto)
+    public Task<Result> Add(AddCoffeeTypeDto dto)
     {
         throw new NotImplementedException();
     }
@@ -26,22 +26,22 @@ public class CoffeeCategoryService : ICoffeeCategoryService
         throw new NotImplementedException();
     }
 
-    public async Task<PagedResult<List<CoffeeCategoryDto>>> GetAll(CoffeeCategoryFilter filter)
+    public async Task<PagedResult<List<CoffeeTypeDto>>> GetAll(CoffeeCategoryFilter filter)
     {
-        var query = _db.CoffeeCategories
+        var query = _db.CoffeeTypes
             .Include(x => x.Translations);
 
-        var categories = await filter.FilterObjects(query).ToListAsync();
+        var types = await filter.FilterObjects(query).ToListAsync();
 
-        return new PagedResult<List<CoffeeCategoryDto>>(await filter.GetPagedInfoAsync(query), categories.MapToCoffeeCategoriesDtos());
+        return new PagedResult<List<CoffeeTypeDto>>(await filter.GetPagedInfoAsync(query), types.MapToCoffeeTypesDtos());
     }
 
-    public Task<Result<CoffeeCategoryDto>> GetById(long Id)
+    public Task<Result<CoffeeTypeDto>> GetById(long Id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Result> Update(UpdateCoffeeCategoryDto dto)
+    public Task<Result> Update(UpdateCoffeeTypeDto dto)
     {
         throw new NotImplementedException();
     }

@@ -11,28 +11,27 @@ namespace CoffeeHouse.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "coffee_category",
+                name: "coffee_type",
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    coffee_category_enum = table.Column<int>(type: "integer", nullable: false),
                     created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     modify_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     is_deleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_coffee_category", x => x.id);
+                    table.PrimaryKey("pk_coffee_type", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "coffee_category_translation",
+                name: "coffee_type_translation",
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    coffee_category_id = table.Column<long>(type: "bigint", nullable: false),
+                    coffee_type_id = table.Column<long>(type: "bigint", nullable: false),
                     name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     modify_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -41,34 +40,34 @@ namespace CoffeeHouse.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_coffee_category_translation", x => x.id);
+                    table.PrimaryKey("pk_coffee_type_translation", x => x.id);
                     table.ForeignKey(
-                        name: "fk_coffee_category_translation_coffee_category_coffee_category",
-                        column: x => x.coffee_category_id,
-                        principalTable: "coffee_category",
+                        name: "fk_coffee_type_translation_coffee_type_coffee_type_id",
+                        column: x => x.coffee_type_id,
+                        principalTable: "coffee_type",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
-                table: "coffee_category",
-                columns: new[] { "id", "coffee_category_enum", "created_date", "is_deleted", "modify_date" },
+                table: "coffee_type",
+                columns: new[] { "id", "created_date", "is_deleted", "modify_date" },
                 values: new object[,]
                 {
-                    { 1L, 1, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 2L, 2, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 3L, 3, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 4L, 4, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 5L, 5, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 6L, 6, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 7L, 7, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 8L, 8, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 9L, 9, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) }
+                    { 1L, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 2L, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 3L, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 4L, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 5L, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 6L, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 7L, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 8L, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 9L, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) }
                 });
 
             migrationBuilder.InsertData(
-                table: "coffee_category_translation",
-                columns: new[] { "id", "coffee_category_id", "created_date", "is_deleted", "language_id", "modify_date", "name" },
+                table: "coffee_type_translation",
+                columns: new[] { "id", "coffee_type_id", "created_date", "is_deleted", "language_id", "modify_date", "name" },
                 values: new object[,]
                 {
                     { 1L, 1L, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), false, 1, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Affogato" },
@@ -101,38 +100,38 @@ namespace CoffeeHouse.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "ix_coffee_category_created_date",
-                table: "coffee_category",
+                name: "ix_coffee_type_created_date",
+                table: "coffee_type",
                 column: "created_date");
 
             migrationBuilder.CreateIndex(
-                name: "ix_coffee_category_is_deleted",
-                table: "coffee_category",
+                name: "ix_coffee_type_is_deleted",
+                table: "coffee_type",
                 column: "is_deleted");
 
             migrationBuilder.CreateIndex(
-                name: "ix_coffee_category_translation_coffee_category_id_language_id",
-                table: "coffee_category_translation",
-                columns: new[] { "coffee_category_id", "language_id" });
+                name: "ix_coffee_type_translation_coffee_type_id_language_id",
+                table: "coffee_type_translation",
+                columns: new[] { "coffee_type_id", "language_id" });
 
             migrationBuilder.CreateIndex(
-                name: "ix_coffee_category_translation_created_date",
-                table: "coffee_category_translation",
+                name: "ix_coffee_type_translation_created_date",
+                table: "coffee_type_translation",
                 column: "created_date");
 
             migrationBuilder.CreateIndex(
-                name: "ix_coffee_category_translation_is_deleted",
-                table: "coffee_category_translation",
+                name: "ix_coffee_type_translation_is_deleted",
+                table: "coffee_type_translation",
                 column: "is_deleted");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "coffee_category_translation");
+                name: "coffee_type_translation");
 
             migrationBuilder.DropTable(
-                name: "coffee_category");
+                name: "coffee_type");
         }
     }
 }

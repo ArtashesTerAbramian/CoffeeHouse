@@ -22,7 +22,7 @@ namespace CoffeeHouse.DAL.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeCategory", b =>
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeType", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,10 +30,6 @@ namespace CoffeeHouse.DAL.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<int>("CoffeeCategoryEnum")
-                        .HasColumnType("integer")
-                        .HasColumnName("coffee_category_enum");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone")
@@ -48,37 +44,20 @@ namespace CoffeeHouse.DAL.Migrations
                         .HasColumnName("modify_date");
 
                     b.HasKey("Id")
-                        .HasName("pk_coffee_category");
+                        .HasName("pk_coffee_type");
 
                     b.HasIndex("CreatedDate")
-                        .HasDatabaseName("ix_coffee_category_created_date");
+                        .HasDatabaseName("ix_coffee_type_created_date");
 
                     b.HasIndex("IsDeleted")
-                        .HasDatabaseName("ix_coffee_category_is_deleted");
+                        .HasDatabaseName("ix_coffee_type_is_deleted");
 
-                    b.ToTable("coffee_category", (string)null);
+                    b.ToTable("coffee_type", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = 8L,
-                            CoffeeCategoryEnum = 8,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 4L,
-                            CoffeeCategoryEnum = 4,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            CoffeeCategoryEnum = 3,
+                            Id = 1L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
@@ -86,15 +65,20 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 2L,
-                            CoffeeCategoryEnum = 2,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = 6L,
-                            CoffeeCategoryEnum = 6,
+                            Id = 3L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 4L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
@@ -102,23 +86,13 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 5L,
-                            CoffeeCategoryEnum = 5,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
-                            Id = 1L,
-                            CoffeeCategoryEnum = 1,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
-                            Id = 9L,
-                            CoffeeCategoryEnum = 9,
+                            Id = 6L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
@@ -126,14 +100,27 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 7L,
-                            CoffeeCategoryEnum = 7,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 9L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         });
                 });
 
-            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeCategoryTranslation", b =>
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeTypeTranslation", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -142,9 +129,9 @@ namespace CoffeeHouse.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("CoffeeCategoryId")
+                    b.Property<long>("CoffeeTypeId")
                         .HasColumnType("bigint")
-                        .HasColumnName("coffee_category_id");
+                        .HasColumnName("coffee_type_id");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone")
@@ -169,24 +156,24 @@ namespace CoffeeHouse.DAL.Migrations
                         .HasColumnName("name");
 
                     b.HasKey("Id")
-                        .HasName("pk_coffee_category_translation");
+                        .HasName("pk_coffee_type_translation");
 
                     b.HasIndex("CreatedDate")
-                        .HasDatabaseName("ix_coffee_category_translation_created_date");
+                        .HasDatabaseName("ix_coffee_type_translation_created_date");
 
                     b.HasIndex("IsDeleted")
-                        .HasDatabaseName("ix_coffee_category_translation_is_deleted");
+                        .HasDatabaseName("ix_coffee_type_translation_is_deleted");
 
-                    b.HasIndex("CoffeeCategoryId", "LanguageId")
-                        .HasDatabaseName("ix_coffee_category_translation_coffee_category_id_language_id");
+                    b.HasIndex("CoffeeTypeId", "LanguageId")
+                        .HasDatabaseName("ix_coffee_type_translation_coffee_type_id_language_id");
 
-                    b.ToTable("coffee_category_translation", (string)null);
+                    b.ToTable("coffee_type_translation", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1L,
-                            CoffeeCategoryId = 1L,
+                            CoffeeTypeId = 1L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 1,
@@ -196,7 +183,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 2L,
-                            CoffeeCategoryId = 1L,
+                            CoffeeTypeId = 1L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 2,
@@ -206,7 +193,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 3L,
-                            CoffeeCategoryId = 1L,
+                            CoffeeTypeId = 1L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 3,
@@ -216,7 +203,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 4L,
-                            CoffeeCategoryId = 2L,
+                            CoffeeTypeId = 2L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 1,
@@ -226,7 +213,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 5L,
-                            CoffeeCategoryId = 2L,
+                            CoffeeTypeId = 2L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 2,
@@ -236,7 +223,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 6L,
-                            CoffeeCategoryId = 2L,
+                            CoffeeTypeId = 2L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 3,
@@ -246,7 +233,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 7L,
-                            CoffeeCategoryId = 3L,
+                            CoffeeTypeId = 3L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 1,
@@ -256,7 +243,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 8L,
-                            CoffeeCategoryId = 3L,
+                            CoffeeTypeId = 3L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 2,
@@ -266,7 +253,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 9L,
-                            CoffeeCategoryId = 3L,
+                            CoffeeTypeId = 3L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 3,
@@ -276,7 +263,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 10L,
-                            CoffeeCategoryId = 4L,
+                            CoffeeTypeId = 4L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 1,
@@ -286,7 +273,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 11L,
-                            CoffeeCategoryId = 4L,
+                            CoffeeTypeId = 4L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 2,
@@ -296,7 +283,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 12L,
-                            CoffeeCategoryId = 4L,
+                            CoffeeTypeId = 4L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 3,
@@ -306,7 +293,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 13L,
-                            CoffeeCategoryId = 5L,
+                            CoffeeTypeId = 5L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 1,
@@ -316,7 +303,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 14L,
-                            CoffeeCategoryId = 5L,
+                            CoffeeTypeId = 5L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 2,
@@ -326,7 +313,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 15L,
-                            CoffeeCategoryId = 5L,
+                            CoffeeTypeId = 5L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 3,
@@ -336,7 +323,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 16L,
-                            CoffeeCategoryId = 6L,
+                            CoffeeTypeId = 6L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 1,
@@ -346,7 +333,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 17L,
-                            CoffeeCategoryId = 6L,
+                            CoffeeTypeId = 6L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 2,
@@ -356,7 +343,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 18L,
-                            CoffeeCategoryId = 6L,
+                            CoffeeTypeId = 6L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 3,
@@ -366,7 +353,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 19L,
-                            CoffeeCategoryId = 7L,
+                            CoffeeTypeId = 7L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 1,
@@ -376,7 +363,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 20L,
-                            CoffeeCategoryId = 7L,
+                            CoffeeTypeId = 7L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 2,
@@ -386,7 +373,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 21L,
-                            CoffeeCategoryId = 7L,
+                            CoffeeTypeId = 7L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 3,
@@ -396,7 +383,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 22L,
-                            CoffeeCategoryId = 8L,
+                            CoffeeTypeId = 8L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 1,
@@ -406,7 +393,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 23L,
-                            CoffeeCategoryId = 8L,
+                            CoffeeTypeId = 8L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 2,
@@ -416,7 +403,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 24L,
-                            CoffeeCategoryId = 8L,
+                            CoffeeTypeId = 8L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 3,
@@ -426,7 +413,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 25L,
-                            CoffeeCategoryId = 9L,
+                            CoffeeTypeId = 9L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 1,
@@ -436,7 +423,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 26L,
-                            CoffeeCategoryId = 9L,
+                            CoffeeTypeId = 9L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 2,
@@ -446,7 +433,7 @@ namespace CoffeeHouse.DAL.Migrations
                         new
                         {
                             Id = 27L,
-                            CoffeeCategoryId = 9L,
+                            CoffeeTypeId = 9L,
                             CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             LanguageId = 3,
@@ -455,19 +442,19 @@ namespace CoffeeHouse.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeCategoryTranslation", b =>
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeTypeTranslation", b =>
                 {
-                    b.HasOne("CoffeeHouse.DAL.Models.CoffeeCategory", "CoffeeCategory")
+                    b.HasOne("CoffeeHouse.DAL.Models.CoffeeType", "CoffeeType")
                         .WithMany("Translations")
-                        .HasForeignKey("CoffeeCategoryId")
+                        .HasForeignKey("CoffeeTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
-                        .HasConstraintName("fk_coffee_category_translation_coffee_category_coffee_category");
+                        .HasConstraintName("fk_coffee_type_translation_coffee_type_coffee_type_id");
 
-                    b.Navigation("CoffeeCategory");
+                    b.Navigation("CoffeeType");
                 });
 
-            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeCategory", b =>
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeType", b =>
                 {
                     b.Navigation("Translations");
                 });

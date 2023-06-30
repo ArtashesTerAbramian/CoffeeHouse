@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoffeeHouse.DTO.CoffeeCategoryDtos
+namespace CoffeeHouse.DTO.CoffeeTypeDtos
 {
-    public class UpdateCoffeeCategoryDto
+    public class UpdateCoffeeTypeDto
     {
         public long Id { get; set; }
-        public List<CoffeeCategoryTranslationDto> Translations { get; set; }
+        public List<CoffeeTypeTranslationDto> Translations { get; set; }
     }
 }

@@ -6,11 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoffeeHouse.DTO.CoffeeCategoryDtos
+namespace CoffeeHouse.DTO.CoffeeTypeDtos
 {
-    public class CoffeeCategoryDto : BaseDto
+    public class CoffeeTypeDto : BaseDto
     {
         public string Name { get; set; }
-        public CoffeeCategoryEnum CoffeeCategoryEnum { get; set; }
     }
 }
