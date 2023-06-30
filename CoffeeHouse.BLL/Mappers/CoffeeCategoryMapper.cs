@@ -5,7 +5,7 @@ using Riok.Mapperly.Abstractions;
 namespace CoffeeHouse.BLL.Mappers;
 
 [Mapper]
-public static partial class CoffeeCategoryMapper
+public static partial class CoffeeTypeMapper
 {
     public static CoffeeTypeDto MapCoffeeTypeDto(this CoffeeType type)
     {

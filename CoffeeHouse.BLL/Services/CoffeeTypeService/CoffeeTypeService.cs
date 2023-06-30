@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoffeeHouse.BLL.Services.CoffeeCategoryService;
 
-public class CoffeeCategoryService : ICoffeeCategoryService
+public class CoffeeTypeService : ICoffeeTypeService
 {
     private readonly AppDbContext _db;
 
-    public CoffeeCategoryService(AppDbContext db)
+    public CoffeeTypeService(AppDbContext db)
     {
         _db = db;
     }
@@ -26,7 +26,7 @@ public class CoffeeCategoryService : ICoffeeCategoryService
         throw new NotImplementedException();
     }
 
-    public async Task<PagedResult<List<CoffeeTypeDto>>> GetAll(CoffeeCategoryFilter filter)
+    public async Task<PagedResult<List<CoffeeTypeDto>>> GetAll(CoffeeTypeFilter filter)
     {
         var query = _db.CoffeeTypes
             .Include(x => x.Translations);

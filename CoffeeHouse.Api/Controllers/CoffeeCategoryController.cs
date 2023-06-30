@@ -9,15 +9,15 @@ namespace CoffeeHouse.Api.Controllers
 {
     public class CoffeeCategoryController : ApiControllerBase
     {
-        private readonly ICoffeeCategoryService _coffeeCategoryService;
+        private readonly ICoffeeTypeService _coffeeCategoryService;
 
-        public CoffeeCategoryController(ICoffeeCategoryService coffeeCategoryService)
+        public CoffeeCategoryController(ICoffeeTypeService coffeeCategoryService)
         {
             _coffeeCategoryService = coffeeCategoryService;
         }
 
         [HttpGet("get-all")]
-        public async Task<PagedResult<List<CoffeeTypeDto>>> GetAll([FromQuery] CoffeeCategoryFilter filter)
+        public async Task<PagedResult<List<CoffeeTypeDto>>> GetAll([FromQuery] CoffeeTypeFilter filter)
         {
             return await _coffeeCategoryService.GetAll(filter);
         }

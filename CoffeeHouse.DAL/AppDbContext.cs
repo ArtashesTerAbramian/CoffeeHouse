@@ -21,6 +21,15 @@ public class AppDbContext : DbContext
 
     public DbSet<Error> Errors { get; set; }
     public DbSet<CoffeeType> CoffeeTypes { get; set; }
+    public DbSet<Coffee> Coffee { get; set; }
+    public DbSet<CoffeeTranslation> CoffeeTranslations { get; set; }
+    public DbSet<CoffeePhoto> CoffeePhotos { get; set; }
+
+
+
+
+
+
 
     public override int SaveChanges()
     {
