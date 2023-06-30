@@ -19,9 +19,17 @@ public class LangagueMiddleware : IMiddleware
 
         if (!string.IsNullOrWhiteSpace(acceptLanguage))
         {
-            if (int.TryParse(acceptLanguage, out var value))
+            switch (acceptLanguage)
             {
-                languageService.LanguageId = value;
+                case "en":
+                    languageService.LanguageId = (int)LanguageEnum.English;
+                    break;
+                case "ru":
+                    languageService.LanguageId = (int)LanguageEnum.Russian;
+                    break;
+                case "am":
+                    languageService.LanguageId = (int)LanguageEnum.Armenian;
+                    break;
             }
         }
 
