@@ -24,12 +24,8 @@ public class AppDbContext : DbContext
     public DbSet<Coffee> Coffee { get; set; }
     public DbSet<CoffeeTranslation> CoffeeTranslations { get; set; }
     public DbSet<CoffeePhoto> CoffeePhotos { get; set; }
-
-
-
-
-
-
+    public DbSet<User> Users { get; set; }
+    public DbSet<UserSession> UserSessions { get; set; }
 
     public override int SaveChanges()
     {

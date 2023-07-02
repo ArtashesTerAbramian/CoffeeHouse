@@ -3,10 +3,12 @@ using CoffeeHouse.BLL.Filters;
 using CoffeeHouse.BLL.Services.CoffeeService;
 using CoffeeHouse.Dto;
 using CoffeeHouse.DTO.CoffeeDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeHouse.Api.Controllers
 {
+    [Authorize]
     public class CoffeeController : ApiControllerBase
     {
         private readonly ICoffeeService _coffeeService;
@@ -29,14 +31,12 @@ namespace CoffeeHouse.Api.Controllers
         }
 
         [HttpPost("add")]
-        [DisableRequestSizeLimit]
         public async Task<Result> Add(AddCoffeeDto dto)
         {
             return await _coffeeService.Add(dto);
         }
 
         [HttpPost("update")]
-        [DisableRequestSizeLimit]
         public async Task<Result> Update(UpdateCoffeeDto dto)
         {
             return await _coffeeService.Update(dto);
@@ -47,6 +47,5 @@ namespace CoffeeHouse.Api.Controllers
         {
             return await _coffeeService.Delete(dto.Id);
         }
-
     }
 }

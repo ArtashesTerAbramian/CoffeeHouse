@@ -4,7 +4,9 @@ using CoffeeHouse.BLL.Helpers;
 using CoffeeHouse.BLL.Middlewares;
 //using CoffeeHouse.BLL.Validators.EmployeeValidators;
 using CoffeeHouse.DAL;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;
@@ -22,6 +24,9 @@ try
     builder.Host.UseSerilog(Log.Logger);
 
     builder.Environment.WebRootPath = builder.Configuration.GetSection("FileSettings").GetSection("FilePath").Value;
+    
+    builder.Services.AddCors();
+    builder.Services.AddHttpClient();
 
     // Add services to the container.
     builder.Services.AddDbContext(builder.Configuration);
@@ -42,12 +47,43 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
+    builder.Services.AddHttpContextAccessor();
+    
+    builder.Services.AddSwaggerGen(c =>
+    {
+        c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
+        {
+            Description = "ApiKey must appear in header",
+            Type = SecuritySchemeType.ApiKey,
+            Name = "Authorization",
+            In = ParameterLocation.Header,
+            Scheme = "ApiKeyScheme"
+        });
+        var key = new OpenApiSecurityScheme()
+        {
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.SecurityScheme,
+                Id = "ApiKey"
+            },
+            In = ParameterLocation.Header
+        };
+        var requirement = new OpenApiSecurityRequirement
+        {
+            { key, new List<string>() }
+        };
+        c.AddSecurityRequirement(requirement);
+    });
+    
+    builder.Services.AddAuthentication("UserAuth")
+        .AddScheme<AuthenticationSchemeOptions, UserAuthenticationHandler>("UserAuth", null);
+ 
     var app = builder.Build();
 
     await app.DatabaseMigrate();
 
     // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
+    if (!app.Environment.IsProduction())
     {
         app.UseSwagger();
         app.UseSwaggerUI();
@@ -79,6 +115,7 @@ try
     app.UseMiddleware<ErrorHandlingMiddleware>();
     app.UseLanguageMiddleware();
 
+    app.UseAuthentication();
     app.UseAuthorization();
 
     app.MapControllers();
