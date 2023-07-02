@@ -41,31 +41,31 @@ public class ErrorHandlingMiddleware
         if (ex is DbUpdateException dbExceptin && dbExceptin.InnerException is Npgsql.PostgresException inEx && inEx.SqlState == "23505")
         {
             //23505 unique key violates exception
-            responseResult = Result.Error((await errorService.GetById(ErrorConstants.DuplicateItem)).Description);
+            // responseResult = Result.Error((await errorService.GetById(ErrorConstants.DuplicateItem)).Description);
             logger.LogError(ex, "ErrorHandlingMiddleware Db_Error");
         }
 
         else if (ex is DbUpdateException)
         {
-            responseResult = Result.Error((await errorService.GetById(ErrorConstants.CannotRemoveDataWithReference)).Description);
+            // responseResult = Result.Error((await errorService.GetById(ErrorConstants.CannotRemoveDataWithReference)).Description);
             logger.LogError(ex, "ErrorHandlingMiddleware Db_Error");
         }
         else
         {
-            responseResult = Result.Error("Oops! Something went wrong");
+            // responseResult = Result.Error("Oops! Something went wrong");
             logger.LogError(ex, "ErrorHandlingMiddleware");
         }
 
         context.Response.StatusCode = 500;
 
-        var result = JsonSerializer.Serialize(responseResult, new JsonSerializerOptions()
-        {
-            ReferenceHandler = ReferenceHandler.IgnoreCycles,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            DictionaryKeyPolicy = JsonNamingPolicy.CamelCase
-        });
+        // var result = JsonSerializer.Serialize(responseResult, new JsonSerializerOptions()
+        // {
+        //     ReferenceHandler = ReferenceHandler.IgnoreCycles,
+        //     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        //     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        //     DictionaryKeyPolicy = JsonNamingPolicy.CamelCase
+        // });
 
-        await context.Response.WriteAsync(result);
+        await context.Response.WriteAsync(null);
     }
 }

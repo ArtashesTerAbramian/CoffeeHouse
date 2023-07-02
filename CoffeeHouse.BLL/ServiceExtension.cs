@@ -9,6 +9,7 @@ using CoffeeHouse.BLL.Services.LanguageService;
 using CoffeeHouse.BLL.Services.CoffeeService;
 using CoffeeHouse.BLL.Helpers;
 using CoffeeHouse.BLL.Models;
+using CoffeeHouse.BLL.Services.UserService;
 
 namespace CoffeeHouse.BLL;
 public static class ServiceExtension 
@@ -16,8 +17,10 @@ public static class ServiceExtension
     public static IServiceCollection AddWebServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<FileSettings>(options => configuration.GetSection(nameof(FileSettings)).Bind(options));
+        services.Configure<AuthOptions>(options => configuration.GetSection(nameof(AuthOptions)).Bind(options));
         services.AddSingleton<IContextModificatorService, WebContextModificatorService>();
         services.AddSingleton<FileHelper>();
+        services.AddSingleton<PasswordHashHelper>();
 
         services.AddScoped<LangagueMiddleware>();
         services.AddScoped<ILanguageService, LanguageService>();
@@ -25,6 +28,8 @@ public static class ServiceExtension
         services.AddScoped<IErrorService, ErrorService>();
         services.AddScoped<ICoffeeTypeService, CoffeeTypeService>();
         services.AddScoped<ICoffeeService, CoffeeService>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IUserSessionService, UserSessionService>();
 
         return services;
     }
