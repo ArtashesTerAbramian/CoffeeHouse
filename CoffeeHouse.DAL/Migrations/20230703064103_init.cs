@@ -11,6 +11,21 @@ namespace CoffeeHouse.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "coffee",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    modify_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    is_deleted = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_coffee", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "coffee_type",
                 columns: table => new
                 {
@@ -23,6 +38,72 @@ namespace CoffeeHouse.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_coffee_type", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "users",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    user_name = table.Column<string>(type: "text", nullable: false),
+                    password_hash = table.Column<string>(type: "text", nullable: false),
+                    email = table.Column<string>(type: "text", nullable: false),
+                    phone = table.Column<string>(type: "text", nullable: false),
+                    created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    modify_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    is_deleted = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_users", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "coffee_photo",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    coffee_id = table.Column<long>(type: "bigint", nullable: false),
+                    created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    modify_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    is_deleted = table.Column<bool>(type: "boolean", nullable: false),
+                    file_url = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_coffee_photo", x => x.id);
+                    table.ForeignKey(
+                        name: "fk_coffee_photo_coffee_coffee_id",
+                        column: x => x.coffee_id,
+                        principalTable: "coffee",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "coffee_translation",
+                columns: table => new
+                {
+                    language_id = table.Column<int>(type: "integer", nullable: false),
+                    coffee_id = table.Column<long>(type: "bigint", nullable: false),
+                    name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    description = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    id = table.Column<long>(type: "bigint", nullable: false),
+                    created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    modify_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    is_deleted = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_coffee_translation", x => new { x.language_id, x.coffee_id });
+                    table.ForeignKey(
+                        name: "fk_coffee_translation_coffee_coffee_id",
+                        column: x => x.coffee_id,
+                        principalTable: "coffee",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,6 +126,30 @@ namespace CoffeeHouse.DAL.Migrations
                         name: "fk_coffee_type_translation_coffee_type_coffee_type_id",
                         column: x => x.coffee_type_id,
                         principalTable: "coffee_type",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "user_session",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    user_id = table.Column<long>(type: "bigint", nullable: false),
+                    token = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    is_expired = table.Column<bool>(type: "boolean", nullable: false),
+                    created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    modify_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    is_deleted = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_user_session", x => x.id);
+                    table.ForeignKey(
+                        name: "fk_user_session_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "users",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -100,6 +205,46 @@ namespace CoffeeHouse.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "ix_coffee_created_date",
+                table: "coffee",
+                column: "created_date");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_coffee_is_deleted",
+                table: "coffee",
+                column: "is_deleted");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_coffee_photo_coffee_id",
+                table: "coffee_photo",
+                column: "coffee_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_coffee_photo_created_date",
+                table: "coffee_photo",
+                column: "created_date");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_coffee_photo_is_deleted",
+                table: "coffee_photo",
+                column: "is_deleted");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_coffee_translation_coffee_id",
+                table: "coffee_translation",
+                column: "coffee_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_coffee_translation_created_date",
+                table: "coffee_translation",
+                column: "created_date");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_coffee_translation_is_deleted",
+                table: "coffee_translation",
+                column: "is_deleted");
+
+            migrationBuilder.CreateIndex(
                 name: "ix_coffee_type_created_date",
                 table: "coffee_type",
                 column: "created_date");
@@ -123,15 +268,67 @@ namespace CoffeeHouse.DAL.Migrations
                 name: "ix_coffee_type_translation_is_deleted",
                 table: "coffee_type_translation",
                 column: "is_deleted");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_user_session_created_date",
+                table: "user_session",
+                column: "created_date");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_user_session_is_deleted",
+                table: "user_session",
+                column: "is_deleted");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_user_session_user_id",
+                table: "user_session",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_users_created_date",
+                table: "users",
+                column: "created_date");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_users_email",
+                table: "users",
+                column: "email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "ix_users_is_deleted",
+                table: "users",
+                column: "is_deleted");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_users_user_name",
+                table: "users",
+                column: "user_name",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "coffee_photo");
+
+            migrationBuilder.DropTable(
+                name: "coffee_translation");
+
+            migrationBuilder.DropTable(
                 name: "coffee_type_translation");
 
             migrationBuilder.DropTable(
+                name: "user_session");
+
+            migrationBuilder.DropTable(
+                name: "coffee");
+
+            migrationBuilder.DropTable(
                 name: "coffee_type");
+
+            migrationBuilder.DropTable(
+                name: "users");
         }
     }
 }

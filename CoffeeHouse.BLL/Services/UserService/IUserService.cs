@@ -10,6 +10,6 @@ public interface IUserService
     Task<Result> Delete(long Id);
     Task<PagedResult<List<UserDto>>> GetAllAsync(UserFilter filter);
     Task<Result<UserDto>> GetByIdAsync(long id);
-    Task<UserDto> GetUserByUsernameAsync(string username);
+    Task<Result<UserDto>> GetUserByUsernameAsync(string username);
     Task<Result> UpdateAsync(UpdateUserDto dto);
 }
