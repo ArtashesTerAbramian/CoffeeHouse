@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
+using System.Web.Helpers;
 
 namespace CoffeeHouse.BLL.Services.UserService;
 
@@ -32,15 +33,15 @@ public class UserSessionService : IUserSessionService
         var user = await _db.Users
             .FirstOrDefaultAsync(x => x.UserName == dto.UserName.ToLower());
 
-        
-        // if (dbAdmin == null || !Crypto.VerifyHashedPassword(dbAdmin.PasswordHash, dto.Password))
-        // {
-        //     return await _errorHelper.SetError(response, ErrorConstants.IncorrectEnteredData);
-        // }
-        
+
+        if (user == null || !Crypto.VerifyHashedPassword(user.PasswordHash, dto.Password))
+        {
+            return Result.Error("Incorect entered data");
+        }
+
         if (user == null)
         {
-            return Result.NotFound("Incorrect enteres data");
+            return Result.NotFound("Incorrect entered data");
         }
         
         var token = Guid.NewGuid().ToString("N") + Guid.NewGuid().ToString("N");

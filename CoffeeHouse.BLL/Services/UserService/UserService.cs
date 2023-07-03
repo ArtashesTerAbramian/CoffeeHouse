@@ -23,7 +23,19 @@ public class UserService: IUserService
     
     public async Task<Result> AddUserAsync(AddUserDto dto)
     {
-        
+        if(_db.Users.Any(x => x.UserName == dto.UserName.ToLower()))
+        {
+            return Result.Error("User with provided username already exists");
+        }
+        if (_db.Users.Any(x => x.Email == dto.Email))
+        {
+            return Result.Error("User with provided Email already exists");
+        }
+        if (_db.Users.Any(x => x.Phone == dto.Phone))
+        {
+            return Result.Error("User with provided phone number already exists");
+        }
+
         var user = new User()
         {
             Email = dto.Email,
@@ -50,7 +62,7 @@ public class UserService: IUserService
 
     public async Task<Result<UserDto>> GetByIdAsync(long id)
     {
-        var user = _db.Users.FirstOrDefault(x => x.Id == id);
+        var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == id);
 
         if (user == null)
         {
@@ -60,19 +72,49 @@ public class UserService: IUserService
         return user.MapToUserDto();
     }
 
-    public async Task<UserDto> GetUserByUsernameAsync(string username)
+    public async Task<Result<UserDto>> GetUserByUsernameAsync(string username)
     {
-        throw new NotImplementedException();
-    }
+        var user = await _db.Users.FirstOrDefaultAsync(x => x.UserName == username.ToLower());
 
+        if(user == null)
+        {
+            return Result.NotFound();
+        }
+
+        return user.MapToUserDto();
+    }
 
     public async Task<Result> UpdateAsync(UpdateUserDto dto)
     {
-        throw new NotImplementedException();
+        var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == dto.Id);
+
+        if (user == null)
+        {
+            return Result.NotFound();
+        }
+
+        user.Email = dto.Email;
+        user.Phone = dto.Phone;
+        user.UserName = dto.UserName;
+
+        await _db.SaveChangesAsync();
+
+        return Result.Success();
     }
 
-    public Task<Result> Delete(long Id)
+    public async Task<Result> Delete(long Id)
     {
-        throw new NotImplementedException();
+        var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == Id);
+
+        if(user == null)
+        {
+            return Result.NotFound();
+        }
+
+        user.IsDeleted = true;
+
+        await _db.SaveChangesAsync();
+
+        return Result.Success();
     }
 }

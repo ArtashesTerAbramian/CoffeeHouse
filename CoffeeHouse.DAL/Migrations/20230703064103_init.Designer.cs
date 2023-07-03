@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CoffeeHouse.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230630134000_coffee")]
-    partial class coffee
+    [Migration("20230703064103_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -576,6 +576,117 @@ namespace CoffeeHouse.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.User", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_date");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("email");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_deleted");
+
+                    b.Property<DateTime?>("ModifyDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modify_date");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("password_hash");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("phone");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("user_name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_users");
+
+                    b.HasIndex("CreatedDate")
+                        .HasDatabaseName("ix_users_created_date");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("ix_users_email");
+
+                    b.HasIndex("IsDeleted")
+                        .HasDatabaseName("ix_users_is_deleted");
+
+                    b.HasIndex("UserName")
+                        .IsUnique()
+                        .HasDatabaseName("ix_users_user_name");
+
+                    b.ToTable("users", (string)null);
+                });
+
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.UserSession", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_date");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_deleted");
+
+                    b.Property<bool>("IsExpired")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_expired");
+
+                    b.Property<DateTime?>("ModifyDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modify_date");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("token");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_user_session");
+
+                    b.HasIndex("CreatedDate")
+                        .HasDatabaseName("ix_user_session_created_date");
+
+                    b.HasIndex("IsDeleted")
+                        .HasDatabaseName("ix_user_session_is_deleted");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_user_session_user_id");
+
+                    b.ToTable("user_session", (string)null);
+                });
+
             modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeePhoto", b =>
                 {
                     b.HasOne("CoffeeHouse.DAL.Models.Coffee", "Coffee")
@@ -610,6 +721,18 @@ namespace CoffeeHouse.DAL.Migrations
                         .HasConstraintName("fk_coffee_type_translation_coffee_type_coffee_type_id");
 
                     b.Navigation("CoffeeType");
+                });
+
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.UserSession", b =>
+                {
+                    b.HasOne("CoffeeHouse.DAL.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_user_session_users_user_id");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CoffeeHouse.DAL.Models.Coffee", b =>
