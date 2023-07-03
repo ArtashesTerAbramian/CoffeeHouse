@@ -63,14 +63,14 @@ public class ErrorHandlingMiddleware
 
         context.Response.StatusCode = 500;
 
-        // var result = JsonSerializer.Serialize(responseResult, new JsonSerializerOptions()
-        // {
-        //     ReferenceHandler = ReferenceHandler.IgnoreCycles,
-        //     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-        //     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        //     DictionaryKeyPolicy = JsonNamingPolicy.CamelCase
-        // });
+        var result = JsonSerializer.Serialize(responseResult, new JsonSerializerOptions()
+        {
+            ReferenceHandler = ReferenceHandler.IgnoreCycles,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            DictionaryKeyPolicy = JsonNamingPolicy.CamelCase
+        });
 
-        await context.Response.WriteAsync(null);
+        await context.Response.WriteAsync(result);
     }
 }
