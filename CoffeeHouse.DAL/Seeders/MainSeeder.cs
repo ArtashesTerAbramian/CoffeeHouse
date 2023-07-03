@@ -9,7 +9,7 @@ internal static class MainSeeder
 
     public static void SeedData(this ModelBuilder modelBuilder)
     {
-        //ErrorSeeder.SeedData(modelBuilder);
+        ErrorSeeder.SeedData(modelBuilder);
         CoffeeTypeSeeder.SeedData(modelBuilder);
     }
 }
