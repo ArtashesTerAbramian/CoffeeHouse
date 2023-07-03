@@ -10,6 +10,8 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;
+using CoffeeHouse.BLL.Validators.CoffeeValidator;
+using CoffeeHouse.BLL.Validators;
 
 try
 {
@@ -40,7 +42,7 @@ try
         options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-    })/*.AddFluentValidation(options => options.RegisterValidatorsFromAssembly(typeof(ValidationModel).Assembly))*/;
+    }).AddFluentValidation(options => options.RegisterValidatorsFromAssembly(typeof(LoginValidator).Assembly));
 
 
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

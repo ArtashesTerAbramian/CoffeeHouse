@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 
 namespace CoffeeHouse.DAL.Configurations
 {
-    public class CoffeeConfiguration : BaseConfiguration<Coffee>
+    public class ErrorConfiguration : BaseConfiguration<Error>
     {
-        public override void Configure(EntityTypeBuilder<Coffee> builder)
+        public override void Configure(EntityTypeBuilder<Error> builder)
         {
             base.Configure(builder);
 
-            builder.ToTable("coffee");
+            builder.ToTable("error");
 
-            builder.HasIndex(x => x.CoffeeTypeId);
+            builder.Property(x => x.Name)
+                .HasMaxLength(256);
         }
     }
 }

@@ -28,14 +28,14 @@ public class UserAuthenticationHandler : AuthenticationHandler<AuthenticationSch
 
         if (string.IsNullOrEmpty(token))
         {
-            return AuthenticateResult.Fail("Authorization not provided");
+            throw new UnauthorizedAccessException("Authorization not provided");
         }
 
         var user = await _userSessionService.GetByToken(token);
 
         if (user == null)
         {
-            return AuthenticateResult.Fail("User Not Found");
+            throw new UnauthorizedAccessException("User Not Found");
         }
 
         var claims = new[] {

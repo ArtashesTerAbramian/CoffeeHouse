@@ -6,5 +6,8 @@ public class Coffee : BaseWithMedia<CoffeePhoto>
     {
         Translations = new HashSet<CoffeeTranslation>();
     }
+    public long? CoffeeTypeId { get; set; }
+
     public ICollection<CoffeeTranslation> Translations { get; set; }
+    public CoffeeType CoffeeType { get; set; }
 }
