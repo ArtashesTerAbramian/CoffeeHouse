@@ -1,4 +1,5 @@
 ﻿using Ardalis.Result;
+using CoffeeHouse.BLL.Helpers;
 using CoffeeHouse.BLL.Mappers;
 using CoffeeHouse.BLL.Models;
 using CoffeeHouse.DAL;
@@ -9,7 +10,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
-using System.Web.Helpers;
 
 namespace CoffeeHouse.BLL.Services.UserService;
 
@@ -17,14 +17,17 @@ public class UserSessionService : IUserSessionService
 {
     private readonly AppDbContext _db;
     private readonly IHttpContextAccessor _httpContext;
+    private readonly PasswordHashHelper _passwordHashHelper;
     private readonly AuthOptions _options;
 
     public UserSessionService(AppDbContext db,
         IOptions<AuthOptions> options,
-        IHttpContextAccessor httpContext)
+        IHttpContextAccessor httpContext,
+        PasswordHashHelper passwordHashHelper)
     {
         _db = db;
         _httpContext = httpContext;
+        _passwordHashHelper = passwordHashHelper;
         _options = options.Value;
     }
     
@@ -34,7 +37,7 @@ public class UserSessionService : IUserSessionService
             .FirstOrDefaultAsync(x => x.UserName == dto.UserName.ToLower());
 
 
-        if (user == null || !Crypto.VerifyHashedPassword(user.PasswordHash, dto.Password))
+        if (user == null || !_passwordHashHelper.VerifyPassword(dto.Password, user.PasswordHash))
         {
             return Result.Error("Incorect entered data");
         }
@@ -50,7 +53,7 @@ public class UserSessionService : IUserSessionService
         {
             UserId = user.Id,
             Token = token,
-            Id = user.Id
+            IsExpired = false,
         };
 
         _db.UserSessions.Add(session);

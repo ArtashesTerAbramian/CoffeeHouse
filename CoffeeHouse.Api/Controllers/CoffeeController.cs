@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeHouse.Api.Controllers
 {
-    [Authorize]
     public class CoffeeController : ApiControllerBase
     {
         private readonly ICoffeeService _coffeeService;

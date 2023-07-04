@@ -871,7 +871,7 @@ namespace CoffeeHouse.DAL.Migrations
             modelBuilder.Entity("CoffeeHouse.DAL.Models.UserSession", b =>
                 {
                     b.HasOne("CoffeeHouse.DAL.Models.User", "User")
-                        .WithMany()
+                        .WithMany("UserSessions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
@@ -890,6 +890,11 @@ namespace CoffeeHouse.DAL.Migrations
             modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeType", b =>
                 {
                     b.Navigation("Translations");
+                });
+
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.User", b =>
+                {
+                    b.Navigation("UserSessions");
                 });
 #pragma warning restore 612, 618
         }

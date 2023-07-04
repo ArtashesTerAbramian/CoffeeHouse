@@ -15,6 +15,8 @@ public class UserSessionController : ApiControllerBase
     {
         _userSessionService = userSessionService;
     }
+
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<Result<UserSessionDto>> Add(LoginDto dto)
     {
