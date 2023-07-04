@@ -3,6 +3,7 @@ using Ardalis.Result;
 using CoffeeHouse.BLL.Filters;
 using CoffeeHouse.BLL.Mappers;
 using CoffeeHouse.DAL;
+using CoffeeHouse.DAL.Models;
 using CoffeeHouse.DTO.CoffeeTypeDtos;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,14 +17,43 @@ public class CoffeeTypeService : ICoffeeTypeService
     {
         _db = db;
     }
-    public Task<Result> Add(AddCoffeeTypeDto dto)
+    public async Task<Result> Add(AddCoffeeTypeDto dto)
     {
-        throw new NotImplementedException();
+        var coffeeType = new CoffeeType()
+        {
+            Translations = dto.Translations.Select(x => new CoffeeTypeTranslation()
+            {
+                Name = x.Name,
+                LanguageId = x.LanguageId,
+            }).ToList(),
+        };
+
+        await _db.CoffeeTypes.AddAsync(coffeeType);
+
+        await _db.SaveChangesAsync();
+
+        return Result.Success();
     }
 
-    public Task<Result> Delete(long id)
+    public async Task<Result> Delete(long id)
     {
-        throw new NotImplementedException();
+        var coffeeType = await _db.CoffeeTypes.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (coffeeType == null) 
+        {
+            return Result.NotFound();        
+        }
+
+        coffeeType.IsDeleted = true;
+
+        foreach (var translation in coffeeType.Translations)
+        {
+            translation.IsDeleted = true;
+        }
+
+        await _db.SaveChangesAsync();
+
+        return Result.Success();
     }
 
     public async Task<PagedResult<List<CoffeeTypeDto>>> GetAll(CoffeeTypeFilter filter)
@@ -36,13 +66,42 @@ public class CoffeeTypeService : ICoffeeTypeService
         return new PagedResult<List<CoffeeTypeDto>>(await filter.GetPagedInfoAsync(query), types.MapToCoffeeTypesDtos());
     }
 
-    public Task<Result<CoffeeTypeDto>> GetById(long Id)
+    public async Task<Result<CoffeeTypeDto>> GetById(long id)
     {
-        throw new NotImplementedException();
+        var coffeeType = await _db.CoffeeTypes
+            .Include(x => x.Translations)
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+        if (coffeeType == null)
+        {
+            return Result.NotFound();
+        }
+
+        return coffeeType.MapCoffeeTypeDto();
     }
 
-    public Task<Result> Update(UpdateCoffeeTypeDto dto)
+    public async Task<Result> Update(UpdateCoffeeTypeDto dto)
     {
-        throw new NotImplementedException();
+        var coffeeType = await _db.CoffeeTypes
+            .IgnoreQueryFilters()
+            .Include(x => x.Translations)
+            .FirstOrDefaultAsync(x => x.Id == dto.Id);
+
+        if(coffeeType == null)
+        {
+            return Result.NotFound();
+        }
+
+        foreach (var translationDto in dto.Translations)
+        {
+            var translation = coffeeType.Translations
+                .First(x => x.LanguageId == translationDto.LanguageId);
+
+            translation.Name = translationDto.Name;
+        }
+
+        await _db.SaveChangesAsync();
+
+        return Result.Success();
     }
 }

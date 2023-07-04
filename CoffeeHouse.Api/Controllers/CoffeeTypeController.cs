@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeHouse.Api.Controllers
 {
-    public class CoffeeCategoryController : ApiControllerBase
+    public class CoffeeTypeController : ApiControllerBase
     {
         private readonly ICoffeeTypeService _coffeeCategoryService;
 
-        public CoffeeCategoryController(ICoffeeTypeService coffeeCategoryService)
+        public CoffeeTypeController(ICoffeeTypeService coffeeCategoryService)
         {
             _coffeeCategoryService = coffeeCategoryService;
         }

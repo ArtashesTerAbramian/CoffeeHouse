@@ -93,6 +93,19 @@ public class UserService: IUserService
             return Result.NotFound();
         }
 
+        if (_db.Users.Any(x => x.UserName == dto.UserName.ToLower()))
+        {
+            return Result.Error("User with provided username already exists");
+        }
+        if (_db.Users.Any(x => x.Email == dto.Email))
+        {
+            return Result.Error("User with provided Email already exists");
+        }
+        if (_db.Users.Any(x => x.Phone == dto.Phone))
+        {
+            return Result.Error("User with provided phone number already exists");
+        }
+
         user.Email = dto.Email;
         user.Phone = dto.Phone;
         user.UserName = dto.UserName;
