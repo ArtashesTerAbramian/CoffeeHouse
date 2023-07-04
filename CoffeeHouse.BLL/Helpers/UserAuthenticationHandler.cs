@@ -22,26 +22,34 @@ public class UserAuthenticationHandler : AuthenticationHandler<AuthenticationSch
 
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {
-        string token = null;
+        if (!Request.Headers.TryGetValue("Authorization", out var authorizationHeaderValues))
+        {
+            // No Authorization header present, so return failure
+            return AuthenticateResult.NoResult();
+        }
 
-        token = Request.Headers["Authorization"].ToString();
+        string token = authorizationHeaderValues.FirstOrDefault();
 
         if (string.IsNullOrEmpty(token))
         {
-            throw new UnauthorizedAccessException("Authorization not provided");
+            // Token is missing, so return failure
+            return AuthenticateResult.NoResult();
         }
 
         var user = await _userSessionService.GetByToken(token);
 
         if (user == null)
         {
-            throw new UnauthorizedAccessException("User Not Found");
+            // Invalid token, so return failure
+            return AuthenticateResult.Fail("Invalid token");
         }
 
-        var claims = new[] {
+        var claims = new[]
+        {
             new Claim(ClaimTypes.NameIdentifier, user.UserName),
-            new Claim(ClaimTypes.Name, user.Id.ToString()),
+            new Claim(ClaimTypes.Name, user.Id.ToString())
         };
+
         var identity = new ClaimsIdentity(claims, Scheme.Name);
         var principal = new ClaimsPrincipal(identity);
         var ticket = new AuthenticationTicket(principal, Scheme.Name);

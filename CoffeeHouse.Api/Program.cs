@@ -12,6 +12,7 @@ using Newtonsoft.Json.Serialization;
 using Serilog;
 using CoffeeHouse.BLL.Validators.CoffeeValidator;
 using CoffeeHouse.BLL.Validators;
+using CoffeeHouse.BLL.Validators.UserValidators;
 
 try
 {
@@ -26,7 +27,7 @@ try
     builder.Host.UseSerilog(Log.Logger);
 
     builder.Environment.WebRootPath = builder.Configuration.GetSection("FileSettings").GetSection("FilePath").Value;
-    
+
     builder.Services.AddCors();
     builder.Services.AddHttpClient();
 
@@ -42,7 +43,7 @@ try
         options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-    }).AddFluentValidation(options => options.RegisterValidatorsFromAssembly(typeof(LoginValidator).Assembly));
+    }).AddFluentValidation(options => options.RegisterValidatorsFromAssembly(typeof(AddUserValidator).Assembly));
 
 
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -50,7 +51,7 @@ try
     builder.Services.AddSwaggerGen();
 
     builder.Services.AddHttpContextAccessor();
-    
+
     builder.Services.AddSwaggerGen(c =>
     {
         c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
@@ -76,10 +77,14 @@ try
         };
         c.AddSecurityRequirement(requirement);
     });
-    
-    builder.Services.AddAuthentication("UserAuth")
-        .AddScheme<AuthenticationSchemeOptions, UserAuthenticationHandler>("UserAuth", null);
- 
+
+    builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = "UserAuth";
+        options.DefaultChallengeScheme = "UserAuth";
+    })
+   .AddScheme<AuthenticationSchemeOptions, UserAuthenticationHandler>("UserAuth", null);
+
     var app = builder.Build();
 
     await app.DatabaseMigrate();
@@ -90,7 +95,6 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
-
 
     app.UseCors(x =>
     {

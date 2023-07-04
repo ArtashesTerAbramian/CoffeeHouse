@@ -1,6 +1,7 @@
 ﻿using CoffeeHouse.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
 
 namespace CoffeeHouse.DAL.Configurations;
 
@@ -15,7 +16,7 @@ public class UserConfiguration : BaseConfiguration<User>
 
         builder.Property(x => x.Email)
             .IsRequired();
-        
+
         builder.HasIndex(x => x.Email)
             .IsUnique();
 
@@ -23,6 +24,10 @@ public class UserConfiguration : BaseConfiguration<User>
             .IsRequired();
 
         builder.HasIndex(x => x.UserName)
-            .IsUnique();
+        .IsUnique();
+
+        builder.HasMany(u => u.UserSessions)
+            .WithOne(us => us.User)
+            .HasForeignKey(us => us.UserId);
     }
 }

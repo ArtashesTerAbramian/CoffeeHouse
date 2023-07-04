@@ -3,6 +3,7 @@ using CoffeeHouse.BLL.Filters;
 using CoffeeHouse.BLL.Services.UserService;
 using CoffeeHouse.Dto;
 using CoffeeHouse.DTO.UsersDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeHouse.Api.Controllers;
@@ -34,6 +35,7 @@ public class UserController : ApiControllerBase
         return await _userService.GetUserByUsernameAsync(username);
     }
 
+    [AllowAnonymous]
     [HttpPost("add")]
     [DisableRequestSizeLimit]
     public async Task<Result> Add(AddUserDto dto)
