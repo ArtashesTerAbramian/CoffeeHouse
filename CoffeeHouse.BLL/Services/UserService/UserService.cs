@@ -27,10 +27,12 @@ public class UserService: IUserService
         {
             return Result.Error("User with provided username already exists");
         }
+        
         if (_db.Users.Any(x => x.Email == dto.Email))
         {
             return Result.Error("User with provided Email already exists");
         }
+        
         if (_db.Users.Any(x => x.Phone == dto.Phone))
         {
             return Result.Error("User with provided phone number already exists");
@@ -97,10 +99,12 @@ public class UserService: IUserService
         {
             return Result.Error("User with provided username already exists");
         }
+        
         if (_db.Users.Any(x => x.Email == dto.Email))
         {
             return Result.Error("User with provided Email already exists");
         }
+        
         if (_db.Users.Any(x => x.Phone == dto.Phone))
         {
             return Result.Error("User with provided phone number already exists");
@@ -115,9 +119,9 @@ public class UserService: IUserService
         return Result.Success();
     }
 
-    public async Task<Result> Delete(long Id)
+    public async Task<Result> Delete(long id)
     {
-        var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == Id);
+        var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == id);
 
         if(user == null)
         {

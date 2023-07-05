@@ -41,11 +41,6 @@ public class UserSessionService : IUserSessionService
         {
             return Result.Error("Incorect entered data");
         }
-
-        if (user == null)
-        {
-            return Result.NotFound("Incorrect entered data");
-        }
         
         var token = Guid.NewGuid().ToString("N") + Guid.NewGuid().ToString("N");
         
