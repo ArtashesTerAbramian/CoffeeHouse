@@ -967,7 +967,7 @@ namespace CoffeeHouse.DAL.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("name");
 
-                    b.Property<long?>("ProvinceId")
+                    b.Property<long>("ProvinceId")
                         .HasColumnType("bigint")
                         .HasColumnName("province_id");
 
@@ -1194,11 +1194,14 @@ namespace CoffeeHouse.DAL.Migrations
 
             modelBuilder.Entity("CoffeeHouse.DAL.Models.ProvinceTranslation", b =>
                 {
-                    b.HasOne("CoffeeHouse.DAL.Models.Province", null)
+                    b.HasOne("CoffeeHouse.DAL.Models.Province", "Province")
                         .WithMany("Translations")
                         .HasForeignKey("ProvinceId")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
                         .HasConstraintName("fk_province_translation_provinces_province_id");
+
+                    b.Navigation("Province");
                 });
 
             modelBuilder.Entity("CoffeeHouse.DAL.Models.UserSession", b =>
