@@ -15,9 +15,5 @@ public class AddressTranslationConfiguration : BaseConfiguration<AddressTranslat
         builder.Property(x => x.Street)
             .IsRequired()
             .HasMaxLength(256);
-
-        builder.Property(x => x.State)
-            .IsRequired()
-            .HasMaxLength(256);
     }
 }
