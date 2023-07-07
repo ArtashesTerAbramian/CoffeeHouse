@@ -10,6 +10,7 @@ using CoffeeHouse.BLL.Services.CoffeeService;
 using CoffeeHouse.BLL.Helpers;
 using CoffeeHouse.BLL.Models;
 using CoffeeHouse.BLL.Services.UserService;
+using CoffeeHouse.BLL.Services.ProvinceService;
 
 namespace CoffeeHouse.BLL;
 public static class ServiceExtension 
@@ -30,6 +31,7 @@ public static class ServiceExtension
         services.AddScoped<ICoffeeService, CoffeeService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IUserSessionService, UserSessionService>();
+        services.AddScoped<IProvinceService, ProvinceService>();
 
         return services;
     }
