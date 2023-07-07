@@ -6,6 +6,7 @@ using CoffeeHouse.DAL;
 using CoffeeHouse.DAL.Models;
 using CoffeeHouse.DTO.UsersDtos;
 using Microsoft.EntityFrameworkCore;
+using System.Transactions;
 
 namespace CoffeeHouse.BLL.Services.UserService;
 
@@ -23,7 +24,9 @@ public class UserService: IUserService
     
     public async Task<Result> AddUserAsync(AddUserDto dto)
     {
-        if(_db.Users.Any(x => x.UserName == dto.UserName.ToLower()))
+        using TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
+
+        if (_db.Users.Any(x => x.UserName == dto.UserName.ToLower()))
         {
             return Result.Error("User with provided username already exists");
         }
@@ -49,6 +52,8 @@ public class UserService: IUserService
         await _db.Users.AddAsync(user);
 
         await _db.SaveChangesAsync();
+
+        scope.Complete();
 
         return Result.Success();
     }
@@ -88,6 +93,8 @@ public class UserService: IUserService
 
     public async Task<Result> UpdateAsync(UpdateUserDto dto)
     {
+        using TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
+
         var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == dto.Id);
 
         if (user == null)
@@ -115,6 +122,8 @@ public class UserService: IUserService
         user.UserName = dto.UserName;
 
         await _db.SaveChangesAsync();
+
+        scope.Complete();
 
         return Result.Success();
     }

@@ -63,6 +63,8 @@ public class CoffeeService : ICoffeeService
 
     public async Task<Result> Delete(long id)
     {
+        using TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
+
         var coffee = await _db.Coffee
             .Include(x => x.Translations)
             .FirstOrDefaultAsync(x => x.Id == id);
@@ -82,9 +84,12 @@ public class CoffeeService : ICoffeeService
         foreach (var photo in coffee.Files)
         {
             photo.IsDeleted = true;
+            _fileHelper.DeleteFile(photo.FileUrl);
         }
 
         await _db.SaveChangesAsync();
+
+        scope.Complete();
 
         return Result.Success();
     }
