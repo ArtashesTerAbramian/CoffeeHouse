@@ -13,6 +13,9 @@ using Serilog;
 using CoffeeHouse.BLL.Validators.CoffeeValidator;
 using CoffeeHouse.BLL.Validators;
 using CoffeeHouse.BLL.Validators.UserValidators;
+using SixLabors.ImageSharp.Web.DependencyInjection;
+using InnLine.BLL.Helpers;
+using SixLabors.ImageSharp.Web.Providers;
 
 try
 {
@@ -27,6 +30,10 @@ try
     builder.Host.UseSerilog(Log.Logger);
 
     builder.Environment.WebRootPath = builder.Configuration.GetSection("FileSettings").GetSection("FilePath").Value;
+
+    builder.Services.AddImageSharp()
+      .RemoveProvider<PhysicalFileSystemProvider>()
+      .AddProvider<CustomPhysicalFileSystemProvider>();
 
     builder.Services.AddCors();
     builder.Services.AddHttpClient();
@@ -105,6 +112,7 @@ try
         x.WithExposedHeaders("Content-Disposition");
     });
 
+    app.UseImageSharp();
 
     app.UseStaticFiles(new StaticFileOptions()
     {
