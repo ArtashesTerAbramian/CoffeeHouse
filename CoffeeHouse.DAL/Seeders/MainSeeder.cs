@@ -12,5 +12,6 @@ internal static class MainSeeder
         ErrorSeeder.SeedData(modelBuilder);
         CoffeeTypeSeeder.SeedData(modelBuilder);
         ProvinceSeeder.SeedData(modelBuilder);
+        CitySeeder.SeedData(modelBuilder);
     }
 }
