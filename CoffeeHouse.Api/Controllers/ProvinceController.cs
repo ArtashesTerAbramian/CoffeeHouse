@@ -14,6 +14,7 @@ public class ProvinceController : ApiControllerBase
     {
         _provinceService = provinceService;
     }
+    
 
     [HttpGet("get-all")]
     public async Task<PagedResult<List<ProvinceDto>>> GetAll([FromQuery] ProvinceFilter filter)
