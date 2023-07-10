@@ -29,6 +29,7 @@ public class CoffeeService : ICoffeeService
         var coffee = new Coffee()
         {
             CoffeeTypeId = dto.CoffeeTypeId ?? null,
+            Price = dto.Price,
             Translations = dto.Translations.Select(x => new CoffeeTranslation()
             {
                 LanguageId = x.LanguageId,
@@ -136,6 +137,7 @@ public class CoffeeService : ICoffeeService
         }
 
         coffee.CoffeeTypeId = dto.CoffeeTypeId;
+        coffee.Price = dto.Price;
 
         if (dto.Translations != null && dto.Translations.Any())
         {

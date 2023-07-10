@@ -1,5 +1,4 @@
-﻿
-using CoffeeHouse.DAL.Enums;
+﻿using CoffeeHouse.DAL.Enums;
 using CoffeeHouse.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 

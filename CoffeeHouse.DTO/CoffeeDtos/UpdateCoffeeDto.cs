@@ -11,6 +11,7 @@ namespace CoffeeHouse.DTO.CoffeeDtos
     {
         public long Id { get; set; }
         public long? CoffeeTypeId { get; set; }
+        public decimal Price { get; set; }
         public List<CoffeeTranslationDto> Translations { get; set; }
         public FileDto? Photo { get; set; }
     }

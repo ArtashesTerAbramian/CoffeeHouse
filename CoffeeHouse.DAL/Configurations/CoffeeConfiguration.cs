@@ -17,6 +17,9 @@ namespace CoffeeHouse.DAL.Configurations
 
             builder.ToTable("coffee");
 
+            builder.Property(c => c.Price)
+               .HasColumnType("decimal(18,2)");
+
             builder.HasIndex(x => x.CoffeeTypeId);
         }
     }
