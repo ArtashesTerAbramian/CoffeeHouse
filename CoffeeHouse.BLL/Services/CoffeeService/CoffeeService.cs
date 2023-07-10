@@ -29,6 +29,7 @@ public class CoffeeService : ICoffeeService
         var coffee = new Coffee()
         {
             CoffeeTypeId = dto.CoffeeTypeId ?? null,
+            CoffeeSizeId = dto.CoffeeSizeId ?? null,
             Price = dto.Price,
             Translations = dto.Translations.Select(x => new CoffeeTranslation()
             {
