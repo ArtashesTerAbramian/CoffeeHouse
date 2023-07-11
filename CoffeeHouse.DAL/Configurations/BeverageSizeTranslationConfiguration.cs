@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace CoffeeHouse.DAL.Configurations
 {
-    public class CoffeeSizeTranslationConfiguration : BaseConfiguration<CoffeeSizeTranslation>
+    public class BeverageSizeTranslationConfiguration : BaseConfiguration<BeverageSizeTranslation>
     {
-        public override void Configure(EntityTypeBuilder<CoffeeSizeTranslation> builder)
+        public override void Configure(EntityTypeBuilder<BeverageSizeTranslation> builder)
         {
             base.Configure(builder);
 
-            builder.ToTable("coffee_size_translation");
+            builder.ToTable("beverage_size_translation");
 
             builder.Property(x => x.Size)
                 .HasMaxLength(50);
 
-            builder.HasIndex(x => x.CoffeeSizeId);
+            builder.HasIndex(x => x.BeverageSizeId);
         }
     }
 }

@@ -117,6 +117,211 @@ namespace CoffeeHouse.DAL.Migrations
                     b.ToTable("address_translation", (string)null);
                 });
 
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.BeverageSize", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_date");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_deleted");
+
+                    b.Property<DateTime?>("ModifyDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modify_date");
+
+                    b.Property<int>("SizeEnum")
+                        .HasColumnType("integer")
+                        .HasColumnName("size_enum");
+
+                    b.HasKey("Id")
+                        .HasName("pk_coffee_size");
+
+                    b.HasIndex("CreatedDate")
+                        .HasDatabaseName("ix_coffee_size_created_date");
+
+                    b.HasIndex("IsDeleted")
+                        .HasDatabaseName("ix_coffee_size_is_deleted");
+
+                    b.ToTable("coffee_size", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SizeEnum = 1
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SizeEnum = 2
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SizeEnum = 3
+                        });
+                });
+
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.BeverageSizeTranslation", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("BeverageSizeId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("beverage_size_id");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_date");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_deleted");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("integer")
+                        .HasColumnName("language_id");
+
+                    b.Property<DateTime?>("ModifyDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modify_date");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("size");
+
+                    b.HasKey("Id")
+                        .HasName("pk_beverage_size_translation");
+
+                    b.HasIndex("BeverageSizeId")
+                        .HasDatabaseName("ix_beverage_size_translation_beverage_size_id");
+
+                    b.HasIndex("CreatedDate")
+                        .HasDatabaseName("ix_beverage_size_translation_created_date");
+
+                    b.HasIndex("IsDeleted")
+                        .HasDatabaseName("ix_beverage_size_translation_is_deleted");
+
+                    b.ToTable("beverage_size_translation", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BeverageSizeId = 1L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            LanguageId = 1,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Size = "Small"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            BeverageSizeId = 1L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            LanguageId = 2,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Size = "Маленький"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            BeverageSizeId = 1L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            LanguageId = 3,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Size = "Փոքր"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            BeverageSizeId = 2L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            LanguageId = 1,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Size = "Medium"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            BeverageSizeId = 2L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            LanguageId = 2,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Size = "Средний"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            BeverageSizeId = 2L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            LanguageId = 3,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Size = "Միջին"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            BeverageSizeId = 3L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            LanguageId = 1,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Size = "Large"
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            BeverageSizeId = 3L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            LanguageId = 2,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Size = "Большой"
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            BeverageSizeId = 3L,
+                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            LanguageId = 3,
+                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Size = "Մեծ"
+                        });
+                });
+
             modelBuilder.Entity("CoffeeHouse.DAL.Models.City", b =>
                 {
                     b.Property<long>("Id")
@@ -2843,9 +3048,9 @@ namespace CoffeeHouse.DAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long?>("CoffeeSizeId")
+                    b.Property<long?>("BeverageSizeId")
                         .HasColumnType("bigint")
-                        .HasColumnName("coffee_size_id");
+                        .HasColumnName("beverage_size_id");
 
                     b.Property<long?>("CoffeeTypeId")
                         .HasColumnType("bigint")
@@ -2870,8 +3075,8 @@ namespace CoffeeHouse.DAL.Migrations
                     b.HasKey("Id")
                         .HasName("pk_coffee");
 
-                    b.HasIndex("CoffeeSizeId")
-                        .HasDatabaseName("ix_coffee_coffee_size_id");
+                    b.HasIndex("BeverageSizeId")
+                        .HasDatabaseName("ix_coffee_beverage_size_id");
 
                     b.HasIndex("CreatedDate")
                         .HasDatabaseName("ix_coffee_created_date");
@@ -2879,8 +3084,8 @@ namespace CoffeeHouse.DAL.Migrations
                     b.HasIndex("IsDeleted")
                         .HasDatabaseName("ix_coffee_is_deleted");
 
-                    b.HasIndex("CoffeeTypeId", "CoffeeSizeId")
-                        .HasDatabaseName("ix_coffee_coffee_type_id_coffee_size_id");
+                    b.HasIndex("CoffeeTypeId", "BeverageSizeId")
+                        .HasDatabaseName("ix_coffee_coffee_type_id_beverage_size_id");
 
                     b.ToTable("coffee", (string)null);
                 });
@@ -2929,211 +3134,6 @@ namespace CoffeeHouse.DAL.Migrations
                         .HasDatabaseName("ix_coffee_photo_is_deleted");
 
                     b.ToTable("coffee_photo", (string)null);
-                });
-
-            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeSize", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_date");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_deleted");
-
-                    b.Property<DateTime?>("ModifyDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("modify_date");
-
-                    b.Property<int>("SizeEnum")
-                        .HasColumnType("integer")
-                        .HasColumnName("size_enum");
-
-                    b.HasKey("Id")
-                        .HasName("pk_coffee_size");
-
-                    b.HasIndex("CreatedDate")
-                        .HasDatabaseName("ix_coffee_size_created_date");
-
-                    b.HasIndex("IsDeleted")
-                        .HasDatabaseName("ix_coffee_size_is_deleted");
-
-                    b.ToTable("coffee_size", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            SizeEnum = 1
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            SizeEnum = 2
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            SizeEnum = 3
-                        });
-                });
-
-            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeSizeTranslation", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("CoffeeSizeId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("coffee_size_id");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_date");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_deleted");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("integer")
-                        .HasColumnName("language_id");
-
-                    b.Property<DateTime?>("ModifyDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("modify_date");
-
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("size");
-
-                    b.HasKey("Id")
-                        .HasName("pk_coffee_size_translation");
-
-                    b.HasIndex("CoffeeSizeId")
-                        .HasDatabaseName("ix_coffee_size_translation_coffee_size_id");
-
-                    b.HasIndex("CreatedDate")
-                        .HasDatabaseName("ix_coffee_size_translation_created_date");
-
-                    b.HasIndex("IsDeleted")
-                        .HasDatabaseName("ix_coffee_size_translation_is_deleted");
-
-                    b.ToTable("coffee_size_translation", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CoffeeSizeId = 1L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            LanguageId = 1,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Size = "Small"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            CoffeeSizeId = 1L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            LanguageId = 2,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Size = "Маленький"
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            CoffeeSizeId = 1L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            LanguageId = 3,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Size = "Փոքր"
-                        },
-                        new
-                        {
-                            Id = 4L,
-                            CoffeeSizeId = 2L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            LanguageId = 1,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Size = "Medium"
-                        },
-                        new
-                        {
-                            Id = 5L,
-                            CoffeeSizeId = 2L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            LanguageId = 2,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Size = "Средний"
-                        },
-                        new
-                        {
-                            Id = 6L,
-                            CoffeeSizeId = 2L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            LanguageId = 3,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Size = "Միջին"
-                        },
-                        new
-                        {
-                            Id = 7L,
-                            CoffeeSizeId = 3L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            LanguageId = 1,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Size = "Large"
-                        },
-                        new
-                        {
-                            Id = 8L,
-                            CoffeeSizeId = 3L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            LanguageId = 2,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Size = "Большой"
-                        },
-                        new
-                        {
-                            Id = 9L,
-                            CoffeeSizeId = 3L,
-                            CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            LanguageId = 3,
-                            ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Size = "Մեծ"
-                        });
                 });
 
             modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeTranslation", b =>
@@ -4368,6 +4368,18 @@ namespace CoffeeHouse.DAL.Migrations
                     b.Navigation("Address");
                 });
 
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.BeverageSizeTranslation", b =>
+                {
+                    b.HasOne("CoffeeHouse.DAL.Models.BeverageSize", "BeverageSize")
+                        .WithMany("Translations")
+                        .HasForeignKey("BeverageSizeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_beverage_size_translation_coffee_size_beverage_size_id");
+
+                    b.Navigation("BeverageSize");
+                });
+
             modelBuilder.Entity("CoffeeHouse.DAL.Models.City", b =>
                 {
                     b.HasOne("CoffeeHouse.DAL.Models.Province", "Province")
@@ -4394,11 +4406,11 @@ namespace CoffeeHouse.DAL.Migrations
 
             modelBuilder.Entity("CoffeeHouse.DAL.Models.Coffee", b =>
                 {
-                    b.HasOne("CoffeeHouse.DAL.Models.CoffeeSize", "CoffeeSize")
+                    b.HasOne("CoffeeHouse.DAL.Models.BeverageSize", "BeverageSize")
                         .WithMany()
-                        .HasForeignKey("CoffeeSizeId")
+                        .HasForeignKey("BeverageSizeId")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .HasConstraintName("fk_coffee_coffee_size_coffee_size_id");
+                        .HasConstraintName("fk_coffee_coffee_size_beverage_size_id");
 
                     b.HasOne("CoffeeHouse.DAL.Models.CoffeeType", "CoffeeType")
                         .WithMany()
@@ -4406,7 +4418,7 @@ namespace CoffeeHouse.DAL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_coffee_coffee_types_coffee_type_id");
 
-                    b.Navigation("CoffeeSize");
+                    b.Navigation("BeverageSize");
 
                     b.Navigation("CoffeeType");
                 });
@@ -4421,18 +4433,6 @@ namespace CoffeeHouse.DAL.Migrations
                         .HasConstraintName("fk_coffee_photo_coffee_coffee_id");
 
                     b.Navigation("Coffee");
-                });
-
-            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeSizeTranslation", b =>
-                {
-                    b.HasOne("CoffeeHouse.DAL.Models.CoffeeSize", "CoffeeSize")
-                        .WithMany("Translations")
-                        .HasForeignKey("CoffeeSizeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("fk_coffee_size_translation_coffee_size_coffee_size_id");
-
-                    b.Navigation("CoffeeSize");
                 });
 
             modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeTranslation", b =>
@@ -4488,6 +4488,11 @@ namespace CoffeeHouse.DAL.Migrations
                     b.Navigation("Translations");
                 });
 
+            modelBuilder.Entity("CoffeeHouse.DAL.Models.BeverageSize", b =>
+                {
+                    b.Navigation("Translations");
+                });
+
             modelBuilder.Entity("CoffeeHouse.DAL.Models.City", b =>
                 {
                     b.Navigation("Translations");
@@ -4497,11 +4502,6 @@ namespace CoffeeHouse.DAL.Migrations
                 {
                     b.Navigation("Files");
 
-                    b.Navigation("Translations");
-                });
-
-            modelBuilder.Entity("CoffeeHouse.DAL.Models.CoffeeSize", b =>
-                {
                     b.Navigation("Translations");
                 });
 

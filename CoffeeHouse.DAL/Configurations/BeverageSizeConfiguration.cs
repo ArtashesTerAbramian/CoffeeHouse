@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CoffeeHouse.DAL.Configurations;
 
-public class CoffeeSizeConfiguration : BaseConfiguration<CoffeeSize>
+public class BeverageSizeConfiguration : BaseConfiguration<BeverageSize>
 {
-    public override void Configure(EntityTypeBuilder<CoffeeSize> builder)
+    public override void Configure(EntityTypeBuilder<BeverageSize> builder)
     {
         base.Configure(builder);
 

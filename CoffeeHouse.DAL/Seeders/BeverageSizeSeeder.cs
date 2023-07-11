@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoffeeHouse.DAL.Seeders;
 
-public class CoffeeSizeSeeder
+public class BeverageSizeSeeder
 {
     public static void SeedData(ModelBuilder modelBuilder)
     {
-        var englishValues = Enum.GetValues(typeof(CoffeeSizeEnum));
+        var englishValues = Enum.GetValues(typeof(BeverageSizeEnum));
         var russianValues = new[] { "Маленький", "Средний", "Большой" };
         var armenianValues = new[] { "Փոքր", "Միջին", "Մեծ" };
         
@@ -16,19 +16,19 @@ public class CoffeeSizeSeeder
 
         for (int i = 0; i < englishValues.Length; i++)
         {
-            modelBuilder.Entity<CoffeeSize>().HasData(new CoffeeSize
+            modelBuilder.Entity<BeverageSize>().HasData(new BeverageSize
             {
                 Id = i + 1,
-                SizeEnum = (CoffeeSizeEnum)englishValues.GetValue(i), // Replace with the appropriate province ID for each city
+                SizeEnum = (BeverageSizeEnum)englishValues.GetValue(i), // Replace with the appropriate province ID for each city
                 CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                 ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                 IsDeleted = false,
             });
 
-            modelBuilder.Entity<CoffeeSizeTranslation>().HasData(new CoffeeSizeTranslation
+            modelBuilder.Entity<BeverageSizeTranslation>().HasData(new BeverageSizeTranslation
             {
                 Id = ++translationId,
-                CoffeeSizeId = i + 1,
+                BeverageSizeId = i + 1,
                 LanguageId = 1,
                 Size = englishValues.GetValue(i).ToString(),
                 CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
@@ -36,20 +36,20 @@ public class CoffeeSizeSeeder
                 IsDeleted = false
             });
 
-            modelBuilder.Entity<CoffeeSizeTranslation>().HasData(new CoffeeSizeTranslation
+            modelBuilder.Entity<BeverageSizeTranslation>().HasData(new BeverageSizeTranslation
             {
                 Id = ++translationId,
-                CoffeeSizeId = i + 1,
+                BeverageSizeId = i + 1,
                 LanguageId = 2,
                 Size = russianValues[i],
                 CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                 ModifyDate = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                 IsDeleted = false
             });
-            modelBuilder.Entity<CoffeeSizeTranslation>().HasData(new CoffeeSizeTranslation
+            modelBuilder.Entity<BeverageSizeTranslation>().HasData(new BeverageSizeTranslation
             {
                 Id = ++translationId,
-                CoffeeSizeId = i + 1,
+                BeverageSizeId = i + 1,
                 LanguageId = 3,
                 Size = armenianValues[i],
                 CreatedDate = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc),

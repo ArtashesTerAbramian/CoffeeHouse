@@ -1,6 +1,6 @@
 ﻿namespace CoffeeHouse.DTO.CoffeeDtos;
 
-public class CoffeeSizeDto
+public class BeverageSizeDto
 {
     public string Size { get; set; }
 }

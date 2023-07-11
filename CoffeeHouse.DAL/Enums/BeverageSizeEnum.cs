@@ -1,6 +1,6 @@
 ﻿namespace CoffeeHouse.DAL.Enums
 {
-    public enum CoffeeSizeEnum
+    public enum BeverageSizeEnum
     {
         Small = 1,
         Medium = 2,
