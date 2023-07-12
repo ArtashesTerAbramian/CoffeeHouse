@@ -23,7 +23,7 @@ public class Order : BaseEntity
         private set { _total = value; }
     }
     private decimal _total;
-
+    // todo to be changed (adding orderId column to coffe table)
     public ObservableCollection<Coffee> Coffees { get; set; }
 
     User User { get; set; }
