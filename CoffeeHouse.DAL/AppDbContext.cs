@@ -32,6 +32,7 @@ public class AppDbContext : DbContext
     public DbSet<CityTranslation> CityTranslations { get; set; }
     public DbSet<Province> Provinces { get; set; }
     public DbSet<ProvinceTranslation> ProvinceTranslations { get; set; }
+    public DbSet<Order> Orders { get; set; }
 
     public override int SaveChanges()
     {
