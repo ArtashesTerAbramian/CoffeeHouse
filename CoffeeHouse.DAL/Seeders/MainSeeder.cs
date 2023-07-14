@@ -14,5 +14,6 @@ internal static class MainSeeder
         ProvinceSeeder.SeedData(modelBuilder);
         CitySeeder.SeedData(modelBuilder);
         BeverageSizeSeeder.SeedData(modelBuilder);
+        UserSeeder.SeedData(modelBuilder);
     }
 }

@@ -22,6 +22,7 @@ public class CoffeeService : ICoffeeService
         _db = db;
         _fileHelper = fileHelper;
     }
+    
     public async Task<Result> Add(AddCoffeeDto dto)
     {
         using TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);

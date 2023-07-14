@@ -6,6 +6,7 @@ public class Coffee : BaseWithMedia<CoffeePhoto>
     {
         Translations = new HashSet<CoffeeTranslation>();
     }
+    
     public long? CoffeeTypeId { get; set; }
     public long? BeverageSizeId { get; set; }
     public decimal Price { get; set; }
